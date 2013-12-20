@@ -1,0 +1,25 @@
+{
+  "name": "docker-node-build",
+  "version": "0.0.0",
+  "authors": [
+    "Thomas Rix <trix@twitter.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "directory": "app/public/components",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "app/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.0.3",
+    "jquery": "~2.0.3",
+    "moment": "~2.4.0",
+    "requirejs": "~2.1.9",
+    "es5-shim": "~2.1.0"
+  }
+}

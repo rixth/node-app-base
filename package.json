@@ -1,0 +1,21 @@
+{
+  "name": "docker-node-build",
+  "version": "0.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "BSD-2-Clause",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "supervisor": "~0.5.6",
+    "grunt-contrib-requirejs": "~0.4.1",
+    "requirejs": "~2.1.9"
+  },
+  "dependencies": {
+    "express": "~3.4.7",
+    "jade": "~0.35.0"
+  }
+}
