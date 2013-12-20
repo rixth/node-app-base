@@ -17,6 +17,17 @@ app.configure('production', function () {
   app.disable('x-powered-by');
 });
 
+app.configure('development', function() {
+  var tmpDir = require('os').tmpDir();
+  console.log(tmpDir)
+  app.use(require('less-middleware')({
+    src: __dirname + '/app/public',
+    dest: tmpDir,
+    compress: false
+  }));
+  app.use(express.static(tmpDir));
+});
+
 [
   'default',
 ].forEach(function (routePath) {
