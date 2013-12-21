@@ -4,14 +4,11 @@
 
 FROM danscan/node
 
-ADD . /app
+ADD app/ /app/app
+ADD node_modules/ /app/node_modules
+ADD built-assets/ /app/built-assets
+ADD app.js /app/app.js
 WORKDIR /app
-
-RUN apt-get install -y git && \
-  npm install -g bower grunt-cli && \
-  npm install && \
-  bower install --allow-root && \
-  grunt
 
 ENV NODE_ENV production
 ENV PORT 4000
