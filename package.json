@@ -15,7 +15,10 @@
     "grunt-contrib-requirejs": "~0.4.1",
     "grunt-contrib-less": "~0.8.3",
     "grunt-contrib-clean": "~0.5.0",
-    "less-middleware": "~0.1.14"
+    "less-middleware": "~0.1.14",
+    "bower": "~1.2.8",
+    "grunt-bower-requirejs": "~0.8.0",
+    "grunt-contrib-copy": "~0.4.1"
   },
   "dependencies": {
     "express": "~3.4.7",
