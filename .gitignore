@@ -15,6 +15,7 @@ build
 node_modules
 built-assets
 app/public/components
+releases
 
 .DS_Store
 .AppleDouble

@@ -2,12 +2,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     assetBuildDir: "built-assets",
+    releaseDir: "releases",
 
     bower: {
       target: {
         rjsConfig: 'app/public/javascript/boot.js'
       }
     },
+
+    gitinfo: {},
 
     requirejs: {
       compile: {
@@ -56,6 +59,41 @@ module.exports = function(grunt) {
         files: [
           { src: "<%= assetBuildDir %>" }
         ]
+      },
+      latestLink: {
+        files: [
+          { src: "<%= releaseDir %>/latest.tar" }
+        ]
+      }
+    },
+
+    compress: {
+      build: {
+        options: {
+          archive: '<%= releaseDir %>/<%= gitinfo.local.branch.current.name %>-<%= gitinfo.local.branch.current.shortSHA %>.tar',
+          pretty: true,
+        },
+        files: [
+          { src: ['app/**', '!app/public/**'] },
+          { src: ['built-assets/**'] },
+          { src: ['app.js'] },
+          {
+            src: ['node_modules/**'],
+            filter: function (file) {
+              return /^\.bin/.test(file) || Object.keys(pkg.dependencies).indexOf(file.split('/')[1]) !== -1;
+            }
+          },
+        ]
+      }
+    },
+
+    symlink: {
+      options: {
+        overwrite: true
+      },
+      explicit: {
+        src: '<%= releaseDir %>/<%= gitinfo.local.branch.current.name %>-<%= gitinfo.local.branch.current.shortSHA %>.tar',
+        dest: '<%= releaseDir %>/latest.tar'
       }
     }
   });
@@ -65,6 +103,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-bower-requirejs');
+  grunt.loadNpmTasks('grunt-contrib-compress');
+  grunt.loadNpmTasks('grunt-contrib-symlink');
+  grunt.loadNpmTasks('grunt-gitinfo');
 
   grunt.registerTask('build', [
     'clean:all',
@@ -75,4 +116,5 @@ module.exports = function(grunt) {
     'copy:requirejs_in'
   ]);
   grunt.registerTask('default', ['build']);
+  grunt.registerTask('package', ['build', 'gitinfo', 'compress:build', 'clean:latestLink', 'symlink']);
 };
