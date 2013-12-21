@@ -1,6 +1,8 @@
 module.exports = function(grunt) {
+  var pkg = grunt.file.readJSON('package.json');
+
   grunt.initConfig({
-    pkg: grunt.file.readJSON('package.json'),
+    pkg: pkg,
     assetBuildDir: "built-assets",
     releaseDir: "releases",
 
