@@ -97,6 +97,16 @@ module.exports = function(grunt) {
         src: '<%= releaseDir %>/<%= gitinfo.local.branch.current.name %>-<%= gitinfo.local.branch.current.shortSHA %>.tar',
         dest: '<%= releaseDir %>/latest.tar'
       }
+    },
+
+    karma: {
+      testWatch: {
+        configFile: 'karma.conf.js'
+      },
+      testOnce: {
+        configFile: 'karma.conf.js',
+        singleRun: true
+      }
     }
   });
 
@@ -108,6 +118,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-compress');
   grunt.loadNpmTasks('grunt-contrib-symlink');
   grunt.loadNpmTasks('grunt-gitinfo');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('build', [
     'clean:all',
@@ -118,5 +129,7 @@ module.exports = function(grunt) {
     'copy:requirejs_in'
   ]);
   grunt.registerTask('default', ['build']);
-  grunt.registerTask('package', ['build', 'gitinfo', 'compress:build', 'clean:latestLink', 'symlink']);
+  grunt.registerTask('test', ['karma:testOnce']);
+  grunt.registerTask('test-watch', ['karma:testWatch']);
+  grunt.registerTask('package', ['test', 'build', 'gitinfo', 'compress:build', 'clean:latestLink', 'symlink']);
 };

@@ -1,20 +1,25 @@
 # node-app-base
 
-Serves as a skeleton for node-backended websites and web applications.
+Serves as a skeleton for node-backended websites and web applications. Flight is currently installed as the framework for the index page and tests, but this would be very easy to swap out.
 
 Assets are served out of `app/public` in development. In production, they are expected to be in `built-assets`.
 
 ## Supported tech
 
 * express
+* flight
 * requirejs
+* handlebars
 * less
 * docker
 
 ## Grunt commands
 
 * *build*: compiles all the things in to build-assets.
-* *package*: takes a built working tree, extracts the important bits and compresses it in to a tarball with git information as the filename. The latest tarball is symlinked as `releases/latest.tar`.
+* *test*: runs the karma tests through once
+* *test-watch*: runs the karma tests whenever files change
+* *build*: compiles all the things in to build-assets.
+* *package*: runs tests, builds the working tree, extracts the important bits and compresses it in to a tarball with git information as the filename. The latest tarball is symlinked as `releases/latest.tar`.
 
 ## Docker integration
 

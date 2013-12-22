@@ -20,6 +20,16 @@
     "jquery": "~2.0.3",
     "moment": "~2.4.0",
     "requirejs": "~2.1.9",
+    "es5-shim": "~2.1.0",
+    "flight": "~1.1.1",
+    "handlebars": "~1.1.2"
+  },
+  "resolutions": {
     "es5-shim": "~2.1.0"
+  },
+  "devDependencies": {
+    "jasmine-jquery": "~1.5.93",
+    "jasmine-flight": "~2.1.0",
+    "require-handlebars-plugin": "~0.7.0"
   }
 }
